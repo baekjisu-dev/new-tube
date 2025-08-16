@@ -25,7 +25,7 @@ import { Suspense, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { uint32, z } from "zod";
+import { z } from "zod";
 import {
   Form,
   FormControl,
@@ -160,6 +160,18 @@ export const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
     },
   });
 
+  const revalidate = trpc.videos.revalidate.useMutation({
+    onSuccess: () => {
+      utils.studio.getMany.invalidate();
+      utils.studio.getOne.invalidate({ id: videoId });
+
+      toast.success("Video revalidated");
+    },
+    onError: () => {
+      toast.error("Something went wrong");
+    },
+  });
+
   const generateTitle = trpc.videos.generateTitle.useMutation({
     onSuccess: () => {
       toast.success("Background job started", {
@@ -254,6 +266,12 @@ export const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
+                  <DropdownMenuItem
+                    onClick={() => revalidate.mutate({ id: videoId })}
+                  >
+                    <RotateCcwIcon className="size-4 mr-2" />
+                    Revalidate
+                  </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() => remove.mutate({ id: videoId })}
                   >

@@ -3,6 +3,8 @@ import VideoView from "@/modules/videos/ui/views/video-view";
 import { trpc, HydrateClient } from "@/trpc/server";
 import React from "react";
 
+export const dynamic = "force-dynamic";
+
 interface PageProps {
   params: Promise<{ videoId: string }>;
 }

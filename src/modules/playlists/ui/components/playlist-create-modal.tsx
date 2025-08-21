@@ -54,7 +54,7 @@ export const PlaylistCreateModal = ({
 
   return (
     <ResponsiveModal
-      title="Upload a thumbnail"
+      title="Create a playlist"
       open={open}
       onOpenChange={onOpenChange}
     >

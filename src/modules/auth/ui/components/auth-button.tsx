@@ -10,7 +10,11 @@ export const AuthButton = () => {
       <SignedIn>
         <UserButton>
           <UserButton.MenuItems>
-            {/* TODO: Add user profile menu button */}
+            <UserButton.Link
+              label="My profile"
+              href="/users/current"
+              labelIcon={<UserIcon className="size-4" />}
+            />
             <UserButton.Link
               label="Studio"
               href="/studio"

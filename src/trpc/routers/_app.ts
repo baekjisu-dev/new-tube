@@ -10,6 +10,7 @@ import { commentReactionsRouter } from "@/modules/commentReactions/server/proced
 import { suggestionsRouter } from "@/modules/suggestions/server/procedueres";
 import { searchRouter } from "@/modules/search/server/procedures";
 import { playListRouter } from "@/modules/playlists/server/procedures";
+import { usersRouter } from "@/modules/users/server/procedures";
 
 export const appRouter = createTRPCRouter({
   studio: studioRouter,
@@ -23,6 +24,7 @@ export const appRouter = createTRPCRouter({
   suggestions: suggestionsRouter,
   search: searchRouter,
   playlists: playListRouter,
+  users: usersRouter,
 });
 
 // export type definition of API
